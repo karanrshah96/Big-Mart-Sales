@@ -22,6 +22,27 @@ There are three features that have NULL values:
 
 ## Feauture Engineering and EDA
 
+Let us  look at each of the features and observe its realationship with the label.
+We will also try to convert it to a form that can better predict the label.
+
+List of features and operations:
+
+1. Item weight
+   - Impute NaNs by pivoing
+   - Convert continuous weights to discrete buckets of weights
+2. Outlet Size
+    - Impute NaNs by pivoting with Store Size
+3. Item Visibility
+   - Impute 0 values with average visibility of product type as zero visibility of a product is non-intuitive
+4. Item Type
+   - Group categories into a broader Item_Category feature that can better predict sales
+5. Fat Content
+   - Clean up naming errors while data collection
+   - Create an extra category for Non-Edible Items
+6. Establishment year
+   - Convert feature to years since establishment. The lower value can help model converge better.
+
+
 ## Models
 
 The table below summarizes the performance of various models used to predict Sales.
@@ -37,3 +58,7 @@ The table below summarizes the performance of various models used to predict Sal
 ## Conclusion
 
 In this project we  used the Big Mart data to predict sales for different outlets given certain features. We tested on many different models and tried to optimize them by trying to tune the hyperparameters using Grid Search techniques. A great chunk of the problem was focussed on EDA and feature engineering. It turns out the Graadient Boosting Tree achieved the best performance with a cross validated RMSE of 1086. It must be noted that the sales ranges from 30 to 14000.
+
+## Future Work
+
+Firstly, we can try training the model on a subset of features by only including those that can better exaplain the dependent variable. Secondly try to engineer more features by compunding data for the geographic locations of the stores as they may map the buying pattern a lot better. 
